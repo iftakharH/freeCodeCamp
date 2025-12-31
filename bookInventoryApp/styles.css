@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-dark: #121212;
+    --table-bg: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --accent-read: #00b894;
+    --accent-reading: #fdcb6e;
+    --accent-toread: #0984e3;
+    --border-color: #333;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #ff7675, #fab1a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+table {
+    width: 90%;
+    max-width: 1000px;
+    border-collapse: separate;
+    /* Allows border radius */
+    border-spacing: 0 10px;
+    /* Spacing between rows */
+}
+
+th {
+    padding: 1.5rem;
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    padding: 1.5rem;
+    vertical-align: middle;
+}
+
+/* Row Styling with Gradients (User Story: Attribute Selectors for rows) */
+tr {
+    transition: transform 0.2s;
+}
+
+tr:not(:first-child):hover {
+    transform: scale(1.01);
+}
+
+/* Base style for data rows */
+tbody tr {
+    background-color: var(--table-bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    /* Note: requires display block or specific border-collapse handling on modern browsers, but visuals will try to adhere */
+}
+
+/* Using attribute selectors as requested for row backgrounds */
+tr[class="read"] {
+    background-image: linear-gradient(90deg, rgba(0, 184, 148, 0.1), transparent);
+}
+
+tr[class="to-read"] {
+    background-image: linear-gradient(90deg, rgba(9, 132, 227, 0.1), transparent);
+}
+
+tr[class="in-progress"] {
+    background-image: linear-gradient(90deg, rgba(253, 203, 110, 0.1), transparent);
+}
+
+/* Span Display Property (User Story) */
+span {
+    display: inline-block;
+}
+
+/* Status Badge Styling using Attribute Selectors (User Story) */
+/* Shared status styles */
+span[class="status"] {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Rate Container & Shared Rate Span Styles (User Story target class starting with rate) */
+span[class="status"],
+span[class^="rate"] {
+    /* Height, width, padding as requested */
+    height: auto;
+    width: auto;
+    padding: 5px;
+    /* Minimal padding */
+}
+
+/* Target span elements inside .rate (The dots) */
+span[class^="rate"]>span {
+    border: 1px solid #555;
+    border-radius: 50%;
+    margin: 0 2px;
+    height: 15px;
+    width: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Specific Status Styles (Descendant of TR classes) */
+
+/* To Read Status */
+tr[class="to-read"] span[class="status"] {
+    border: 1px solid var(--accent-toread);
+    background-image: linear-gradient(135deg, rgba(9, 132, 227, 0.8), rgba(116, 185, 255, 0.8));
+    color: white;
+}
+
+/* Read Status */
+tr[class="read"] span[class="status"] {
+    border: 1px solid var(--accent-read);
+    background-image: linear-gradient(135deg, rgba(0, 184, 148, 0.8), rgba(85, 239, 196, 0.8));
+    color: white;
+}
+
+/* In Progress Status */
+tr[class="in-progress"] span[class="status"] {
+    border: 1px solid var(--accent-reading);
+    background-image: linear-gradient(135deg, rgba(253, 203, 110, 0.8), rgba(255, 234, 167, 0.8));
+    color: #2d3436;
+    /* Dark text for contrast on yellow */
+}
+
+
+/* Rating Logic (User Stories for filling the dots) */
+/* The rating dots are direct children of span[class^="rate"] */
+
+/* 1 Star (Rate: one) */
+span[class~="one"]>span:first-child {
+    background-image: linear-gradient(to bottom, #f1c40f, #f39c12);
+    border-color: #f1c40f;
+    box-shadow: 0 0 5px #f1c40f;
+}
+
+/* 2 Stars (Rate: two) */
+span[class~="two"]>span:nth-child(-n+2) {
+    background-image: linear-gradient(to bottom, #f1c40f, #f39c12);
+    border-color: #f1c40f;
+    box-shadow: 0 0 5px #f1c40f;
+}
+
+/* 3 Stars (Rate: three) - Targeting all descendants */
+span[class~="three"]>span {
+    background-image: linear-gradient(to bottom, #f1c40f, #f39c12);
+    border-color: #f1c40f;
+    box-shadow: 0 0 5px #f1c40f;
+}
