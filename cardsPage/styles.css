@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+:root {
+    --card-width: 200px;
+    --card-height: 300px;
+    --bg-color: #a0dbf5;
+    --card-bg: #ecf0f1;
+    --red-suit: #e74c3c;
+    --black-suit: #2c3e50;
+    --gold-accent: #f1c40f;
+}
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+}
+
+#playing-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 2rem;
+    perspective: 1000px;
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+
+    /* Required Flex Properties */
+    display: flex;
+    justify-content: space-between;
+
+    /* Animation & Interactive */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27),
+        box-shadow 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #bdc3c7;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-20px) rotateX(10deg) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+/* Suit Specific Colors */
+.card.hearts,
+.card.diamonds {
+    color: var(--red-suit);
+}
+
+.card.spades,
+.card.clubs {
+    color: var(--black-suit);
+}
+
+/* Left Section */
+.left {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Middle Section */
+.middle {
+    align-self: center;
+
+    /* Required Flex Properties */
+    display: flex;
+    flex-direction: column;
+
+    font-size: 3rem;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
+}
+
+/* Decorative center elements */
+.middle span {
+    display: block;
+    line-height: 0.8;
+}
+
+/* Right Section */
+.right {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    transform: rotate(180deg);
+}
+
+/* King Card Special Styling */
+.card.king .middle {
+    font-size: 4rem;
+    text-shadow: 2px 2px 0 var(--gold-accent);
+}
+
+.card.king {
+    border: 2px solid var(--gold-accent);
+}
+
+/* Ace Special Styling */
+.card.ace .middle {
+    font-size: 5rem;
+}
+
+/* Number 10 Special Styling */
+.card.ten .middle {
+    font-size: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    /* We need column direction for the test, but complex layout for 10 is hard with just column. 
+       Let's stick to requirements: flex-direction: column. 
+       We can have rows inside the column. */
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
