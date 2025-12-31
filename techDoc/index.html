@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <header>Rust Docs</header>
+        <a class="nav-link" href="#Introduction">Introduction</a>
+        <a class="nav-link" href="#Getting_Started">Getting Started</a>
+        <a class="nav-link" href="#Common_Concepts">Common Concepts</a>
+        <a class="nav-link" href="#Ownership_System">Ownership System</a>
+        <a class="nav-link" href="#Pattern_Matching">Pattern Matching</a>
+    </nav>
+
+    <main id="main-doc">
+        <section class="main-section" id="Introduction">
+            <header>Introduction</header>
+            <p>Rust is a multi-paradigm, high-level, general-purpose programming language. It is designed for
+                performance and safety, especially safe concurrency. Rust is syntactically similar to C++, but provides
+                memory safety without using garbage collection.</p>
+            <p>Rust has been the "most loved programming language" in the Stack Overflow Developer Survey for several
+                consecutive years. It is used in systems programming, web assembly, and even embedded devices.</p>
+            <p>Key features include:</p>
+            <ul>
+                <li>Zero-cost abstractions</li>
+                <li>Guaranteed memory safety</li>
+                <li>Threads without data races</li>
+                <li>Trait-based generics</li>
+                <li>Pattern matching</li>
+                <li>Type inference</li>
+            </ul>
+        </section>
+
+        <section class="main-section" id="Getting_Started">
+            <header>Getting Started</header>
+            <p>To start using Rust, you need to install it on your system. The recommended way to install Rust is via
+                <code>rustup</code>, the Rust version management tool.</p>
+            <p>On Unix-like operating systems (Linux and macOS), you can install <code>rustup</code> with the following
+                command in your terminal:</p>
+            <pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
+            <p>On Windows, download and run the <code>rustup-init.exe</code> installer. After installation, you can
+                verify it by checking the version:</p>
+            <pre><code>rustc --version</code></pre>
+            <p>If you see the version number, commit hash, and commit date, you are ready to go!</p>
+        </section>
+
+        <section class="main-section" id="Common_Concepts">
+            <header>Common Concepts</header>
+            <p>Let's look at variables. In Rust, variables are immutable by default. This is one of many nudges Rust
+                gives you to write code that takes advantage of the safety and easy concurrency that Rust offers.</p>
+            <p>When a variable is immutable, once a value is bound to a name, you can't change that value. To make it
+                mutable, you add <code>mut</code> in front of the variable name.</p>
+            <pre><code>let x = 5;
+let mut y = 10;
+y = 15; // This is valid
+// x = 6; // This would be a compile-time error</code></pre>
+            <p>Rust is a statically typed language, which means that it must know the types of all variables at compile
+                time. The compiler can usually infer what type we want to use based on the value and how we use it.</p>
+        </section>
+
+        <section class="main-section" id="Ownership_System">
+            <header>Ownership System</header>
+            <p>Ownership is Rust's most unique feature and has deep implications for the rest of the language. It
+                enables Rust to make memory safety guarantees without needing a garbage collector.</p>
+            <p>There are three main rules of ownership:</p>
+            <ul>
+                <li>Each value in Rust has a <code>owner</code>.</li>
+                <li>There can only be one owner at a time.</li>
+                <li>When the owner goes out of scope, the value will be dropped.</li>
+            </ul>
+            <p>Consider the <code>String</code> type. When we assign a String to another variable, the ownership is
+                transferred (moved), and the original variable is no longer valid.</p>
+            <pre><code>let s1 = String::from("hello");
+let s2 = s1;
+
+// println!("{}, world!", s1); // This would return an error because s1 was moved to s2.</code></pre>
+            <p>If we want to deeply copy the heap data of the String, not just the stack data, we can use a common
+                method called <code>clone</code>.</p>
+        </section>
+
+        <section class="main-section" id="Pattern_Matching">
+            <header>Pattern Matching</header>
+            <p>Rust has an extremely powerful control flow construct called <code>match</code> that allows you to
+                compare a value against a series of patterns and then execute code based on which pattern matches.</p>
+            <p>Patterns can be made up of literals, variable names, wildcards, and many other things.</p>
+            <pre><code>enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}</code></pre>
+            <p>The code associated with each arm is an expression, and the resultant value of the expression in the
+                matching arm is the value that gets returned for the entire <code>match</code> expression.</p>
+            <p>Another useful pattern matching construct is <code>if let</code>, which lets you handle values that match
+                one pattern while ignoring the rest.</p>
+        </section>
+    </main>
+</body>
+
+</html>
