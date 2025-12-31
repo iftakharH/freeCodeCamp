@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #141414;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-color: #00ff9d;
+    /* Cyberpunk Green */
+    --accent-glow: rgba(0, 255, 157, 0.3);
+    --border-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Background Grid Effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#main {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+#main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+#title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+#img-div {
+    width: 100%;
+    background: #000;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Decorative corner markers for image */
+#img-div::before,
+#img-div::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+#img-div::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+#img-div::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+#image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    filter: grayscale(100%) contrast(1.2);
+    transition: filter 0.5s ease;
+}
+
+#image:hover {
+    filter: grayscale(0%) contrast(1.1);
+}
+
+#img-caption {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 0.8rem;
+    width: 100%;
+}
+
+#tribute-info {
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.bio-intro {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.timeline-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: none;
+    position: relative;
+    padding-left: 2rem;
+}
+
+ul::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+li {
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+li::before {
+    content: "";
+    position: absolute;
+    left: -2.4rem;
+    /* Adjust to align with line */
+    top: 0.6rem;
+    width: 12px;
+    height: 12px;
+    background: var(--bg-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+}
+
+li span.date {
+    font-weight: 700;
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.8rem;
+}
+
+.quote-container {
+    margin: 4rem 0;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--accent-color);
+    font-style: italic;
+}
+
+blockquote {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+
+cite {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-link {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.1rem;
+}
+
+#tribute-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent-color);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+#tribute-link:hover {
+    background: var(--accent-glow);
+    border-bottom-style: solid;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    #main {
+        padding: 1.5rem;
+    }
+
+    #title {
+        font-size: 1.8rem;
+    }
+
+    .bio-intro {
+        font-size: 1rem;
+    }
+}
